@@ -1,5 +1,9 @@
 import com.squareup.leakcanary.AnalysisResult;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +22,7 @@ public class App {
         for (int i = 0; i < args.length; i = i + 2) {
             int j = i + 1;
             String value = "";
-            if (s_CMD_MAP.size() > j) {
+            if (j < args.length) {
                 value = args[j];
             }
             s_CMD_MAP.put(args[i], value);
@@ -35,14 +39,36 @@ public class App {
         } else if (s_CMD_MAP.containsKey("-l")) {
             leakFinder = new LastHprofFinder();
         }
-        leakFinder.prepare(s_CMD_MAP);
-        results = leakFinder.find();
+        if (leakFinder != null) {
+            leakFinder.prepare(s_CMD_MAP);
+            results = leakFinder.find();
+            saveResults(results);
+        }
+    }
+
+    private static void saveResults(List<AnalysisResult> results) {
         if (results != null) {
-            for (AnalysisResult result: results) {
-                if (result != null) {
-                    System.out.println(result.leakTrace);
-                }
+            String timeStr = DestroyedActivityLeakFinder.SIMPLE_DATE_FORMAT.format(new Date());
+            File dir = new File("result");
+            if (dir.exists()) {
+                dir.mkdirs();
             }
+            try {
+                File file = new File(dir, "result_" + timeStr + ".txt");
+                FileWriter fileWriter = new FileWriter(file);
+                for (AnalysisResult result: results) {
+                    if (result != null) {
+                        fileWriter.write(result.leakTrace.toString());
+                        System.out.println(result.leakTrace);
+                    }
+                }
+                System.out.println("saved result:" + file);
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } else {
             System.out.println("results=null!");
         }
@@ -51,14 +77,15 @@ public class App {
     private static void help() {
         System.out.println("");
         System.out.println(">>>>>>>>Android Leak Finder<<<<<<<<<<");
-        System.out.println("1. 找指定的类");
+        System.out.println("1. 找指定的类:App -t pkg.xxxActivity -f xxx.hprof");
         System.out.println("   -t: 类名 ");
         System.out.println("   -f: hprof文件名");
-        System.out.println("2. 自动查找包名下的Activity内存泄露");
+        System.out.println("2. 自动查找包名下的Activity内存泄露:App -p pkg");
         System.out.println("   -p: package name");
-        System.out.println("3. analyzer last");
+        System.out.println("3. analyzer last:App -l");
         System.out.println("   -l:last ");
         System.out.println("-h: 帮助");
+        System.out.println("======================================");
 
     }
 

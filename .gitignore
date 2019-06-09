@@ -46,3 +46,5 @@ captures/
 *.iml
 hprof/
 skt/
+result/
+*.hprof

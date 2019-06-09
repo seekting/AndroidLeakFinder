@@ -22,8 +22,13 @@ public class LastHprofFinder implements LeakFinder {
         List<String> names = new ArrayList<>();
         Collections.addAll(names, mDir.list());
         Collections.sort(names);
+        for (String name: names) {
+            System.out.println("exits:" + name);
+        }
         if (names.size() > 0) {
-            mLastFile = new File(mDir, names.get(names.size() - 1));
+            String last = names.get(names.size() - 1);
+            mLastFile = new File(mDir, last);
+            System.out.println("use:" + mLastFile);
         }
 
 
