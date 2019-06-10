@@ -72,7 +72,7 @@ public class App {
             }
 
         } else {
-            System.out.println("results=null!");
+            System.out.println("results = null!");
         }
     }
 

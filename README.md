@@ -29,7 +29,7 @@ AndroidLeakFinder是一个基于pc端(linux系统)的一个自动找内存泄露
 
 ```
 ## 运行jar包(方便测试同学使用)
-  可以下载 [](./release/AndroidLeakFinder_2019_06_10.jar) 和 [](./release/haha-2.0.3.jar)这两个jar包。 
+  可以下载 [](release/AndroidLeakFinder_release.jar) 和 [](./release/haha-2.0.3.jar)这两个jar包。 
    运行的时候cd 到AndroidLeakFinder.jar所在目录
 
 ### 显示帮助
@@ -52,6 +52,14 @@ java -cp  .:pathto/AndroidLeakFinder.jar:pathto/haha-2.0.3.jar  App -p com.seekt
 ```java {.line-numbers}
 
 java -cp  .:pathto/AndroidLeakFinder.jar:pathto/haha-2.0.3.jar  App -l
+
+
+```
+如
+```java {.line-numbers}
+java -cp  .:./AndroidLeakFinder_2019_06_10.jar:./haha-2.0.3.jar  App -l
+java -cp  .:./AndroidLeakFinder_2019_06_10.jar:./haha-2.0.3.jar  App -t android.app.Activity -f ../hprof/2019-06-10_10_13_56.hprof
+
 
 ```
 
