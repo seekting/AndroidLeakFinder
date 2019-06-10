@@ -50,7 +50,7 @@ public class App {
         if (results != null) {
             String timeStr = DestroyedActivityLeakFinder.SIMPLE_DATE_FORMAT.format(new Date());
             File dir = new File("result");
-            if (dir.exists()) {
+            if (!dir.exists()) {
                 dir.mkdirs();
             }
             try {
