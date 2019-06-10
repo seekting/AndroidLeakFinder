@@ -97,3 +97,8 @@ java -cp  .:./build/libs/AndroidLeakFinder.jar:./libs/haha-2.0.3.jar  App -l
 
 1. 需要java1.8的环境
 2. 需要adb环境
+3. windows环境无法找到App类
+```java {.line-numbers}
+java -cp .;./AndroidLeakFinder.jar;./haha-2.0.3.jar App
+
+```

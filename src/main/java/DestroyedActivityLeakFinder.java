@@ -26,11 +26,11 @@ public class DestroyedActivityLeakFinder implements LeakFinder {
     @Override
     public List<AnalysisResult> find() {
 
-        String s = new JavaSyncExec("which adb").execute(0);
-        if (s == null || s.equals("")) {
-
-            return null;
-        }
+//        String s = new JavaSyncExec("which adb").execute(0);
+//        if (s == null || s.equals("")) {
+//
+//            return null;
+//        }
         String timeStr = SIMPLE_DATE_FORMAT.format(new Date());
         String deviceFile = "/data/local/tmp/" + timeStr + ".hprof";
 
