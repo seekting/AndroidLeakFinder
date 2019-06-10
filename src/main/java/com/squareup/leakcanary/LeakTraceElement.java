@@ -143,6 +143,10 @@ public final class LeakTraceElement implements Serializable {
     }
   }
 
+  public String getClassName() {
+    return className;
+  }
+
   @Override public String toString() {
     return toString(false);
   }
@@ -158,7 +162,7 @@ public final class LeakTraceElement implements Serializable {
       string += holder.name().toLowerCase(US) + " ";
     }
 
-    string += getSimpleClassName();
+    string += getClassName();
 
     if (reference != null) {
       String referenceName = reference.getDisplayName();
