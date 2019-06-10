@@ -29,6 +29,6 @@ public class TargetActivityFinder implements LeakFinder {
 
             throw new LeakFinderError("-t: is null!");
         }
-        return AnalyzerHelper.anaylzer(targetClazz, file);
+        return AnalyzerHelper.anaylzer(file,targetClazz);
     }
 }

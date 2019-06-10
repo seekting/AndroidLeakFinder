@@ -56,10 +56,12 @@ public class App {
             try {
                 File file = new File(dir, "result_" + timeStr + ".txt");
                 FileWriter fileWriter = new FileWriter(file);
-                for (AnalysisResult result: results) {
+                for (AnalysisResult result : results) {
                     if (result != null) {
-                        fileWriter.write(result.leakTrace.toString());
-                        System.out.println(result.leakTrace);
+                        if (result.leakTrace != null) {
+                            fileWriter.write(result.leakTrace.toString());
+                            System.out.println(result.leakTrace);
+                        }
                     }
                 }
                 System.out.println("saved result:" + file);
