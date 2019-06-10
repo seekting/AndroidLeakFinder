@@ -55,10 +55,13 @@ java -cp  .:pathto/AndroidLeakFinder.jar:pathto/haha-2.0.3.jar  App -l
 
 
 ```
-如
+
+测试方法：
 ```java {.line-numbers}
-java -cp  .:./AndroidLeakFinder_2019_06_10.jar:./haha-2.0.3.jar  App -l
-java -cp  .:./AndroidLeakFinder_2019_06_10.jar:./haha-2.0.3.jar  App -t android.app.Activity -f ../hprof/2019-06-10_10_13_56.hprof
+java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -p com.android.browser
+java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -p com.android.browser.debug
+java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -l
+java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -t android.app.Activity -f ../hprof/2019-06-10_10_13_56.hprof
 
 
 ```
@@ -90,3 +93,7 @@ java -cp  .:./build/libs/AndroidLeakFinder.jar:./libs/haha-2.0.3.jar  App -p com
 java -cp  .:./build/libs/AndroidLeakFinder.jar:./libs/haha-2.0.3.jar  App -l
 
 ```
+## 常见问题
+
+1. 需要java1.8的环境
+2. 需要adb环境

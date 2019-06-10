@@ -16,6 +16,7 @@ public class App {
     private static Map<String, String> s_CMD_MAP = new HashMap<>();
 
     public static void main(String args[]) {
+
         if (args == null || args.length == 0) {
             help();
         }
@@ -44,6 +45,8 @@ public class App {
             results = leakFinder.find();
             saveResults(results);
         }
+
+
     }
 
     private static void saveResults(List<AnalysisResult> results) {

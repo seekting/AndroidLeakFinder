@@ -18,13 +18,14 @@ public class IOUtil {
         try {
             String line = bufferedReader.readLine();
             while (true) {
-                sb.append(line);
-                line = bufferedReader.readLine();
+
                 if (line != null) {
+                    sb.append(line);
                     sb.append("\n");
                 } else {
                     break;
                 }
+                line = bufferedReader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

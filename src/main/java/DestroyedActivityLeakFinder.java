@@ -25,24 +25,19 @@ public class DestroyedActivityLeakFinder implements LeakFinder {
 
     @Override
     public List<AnalysisResult> find() {
-//#echo $starttime
-//        file="/data/local/tmp/${starttime}.hprof"
-//        adb shell am dumpheap "${2}" "${file}"
-//        sleep 5
-//        adb pull "${file}"
-//        ;;
 
-        String android_home = System.getenv("ANDROID_HOME");
-        if (android_home == null) {
-            System.out.println("please config  ANDROID_HOME env");
+        String s = new JavaSyncExec("which adb").execute(0);
+        if (s == null || s.equals("")) {
+
             return null;
         }
         String timeStr = SIMPLE_DATE_FORMAT.format(new Date());
         String deviceFile = "/data/local/tmp/" + timeStr + ".hprof";
 
-        String adb = android_home + "/platform-tools/adb";
+        String adb = "adb";
         String cmd = adb + " shell am dumpheap " + pkgName + " " + deviceFile;
         JavaExec javaExec = new JavaExec(cmd);
+        System.out.println("dump " + pkgName + "hprof file,wait 10s...");
         javaExec.execute(10000);
         String dirStr = "./hprof";
         String pullCmd = adb + " pull " + deviceFile + " " + dirStr;

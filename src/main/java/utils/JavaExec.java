@@ -22,7 +22,9 @@ public class JavaExec {
                 public void run() {
                     InputStream j = process.getErrorStream();
                     String s = IOUtil.readAndClose(j);
-                    System.out.println("error:" + s);
+                    if (s != null && !"".equals(s)) {
+                        System.out.println("error:" + s);
+                    }
 
                 }
             }).start();
@@ -31,7 +33,9 @@ public class JavaExec {
                 public void run() {
                     InputStream j = process.getInputStream();
                     String s = IOUtil.readAndClose(j);
-                    System.out.println("msg:" + s);
+                    if (s != null && !"".equals(s)) {
+                        System.out.println("msg:" + s);
+                    }
                 }
             }).start();
             new Thread(new Runnable() {
