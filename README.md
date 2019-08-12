@@ -56,41 +56,62 @@ java -cp  .:pathto/AndroidLeakFinder.jar:pathto/haha-2.0.3.jar  App -l
 
 ```
 
-测试方法：
+## 测试方法：
+
+#### Linux环境
 ```java {.line-numbers}
 java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -p com.android.browser
 java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -p com.android.browser.debug
 java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -l
 java -cp  .:./AndroidLeakFinder.jar:./haha-2.0.3.jar  App -t android.app.Activity -f ../hprof/2019-06-10_10_13_56.hprof
-
-
 ```
-
-
+#### Windows环境
+```java {.line-numbers}
+java -cp  .;./AndroidLeakFinder.jar;./haha-2.0.3.jar  App -p com.android.browser
+java -cp  .;./AndroidLeakFinder.jar;./haha-2.0.3.jar  App -p com.android.browser.debug
+java -cp  .;./AndroidLeakFinder.jar;./haha-2.0.3.jar  App -l
+java -cp  .;./AndroidLeakFinder.jar;./haha-2.0.3.jar  App -t android.app.Activity -f ../hprof/2019-06-10_10_13_56.hprof
+```
 ## 开发快捷命令
 ### 显示帮助
 
+#### Linux环境
 ```java {.line-numbers}
-
 java -cp  .:./build/libs/AndroidLeakFinder.jar:./libs/haha-2.0.3.jar  App
-
+```
+#### Windows环境
+```java {.line-numbers}
+java -cp  .;./build/libs/AndroidLeakFinder.jar;./libs/haha-2.0.3.jar  App
 ```
 ### 指定hprof和指定类的排查
+
+#### Linux环境
 ```java {.line-numbers}
-
 java -cp  .:./build/libs/AndroidLeakFinder.jar:./libs/haha-2.0.3.jar  App -t com.seekting.demo2019.LeakActivity -f ./skt/com.seekting.demo2019.LeakActivity
-
 ```
-
+#### Windows环境
+```java {.line-numbers}
+java -cp  .;./build/libs/AndroidLeakFinder.jar;./libs/haha-2.0.3.jar  App -t com.seekting.demo2019.LeakActivity -f ./skt/com.seekting.demo2019.LeakActivity
+```
 ### 指定包名排查
+
+#### Linux环境
 ```java {.line-numbers}
 java -cp  .:./build/libs/AndroidLeakFinder.jar:./libs/haha-2.0.3.jar  App -p com.seekting.demo2019
 ```
-
-### 基于指定包名最新的hprof排查
+#### Windows环境
 ```java {.line-numbers}
-
+java -cp  .;./build/libs/AndroidLeakFinder.jar;./libs/haha-2.0.3.jar  App -p com.seekting.demo2019
+```
+### 基于指定包名最新的hprof排查
+#### Linux环境
+```java {.line-numbers}
 java -cp  .:./build/libs/AndroidLeakFinder.jar:./libs/haha-2.0.3.jar  App -l
+
+```
+#### Windows环境
+```java {.line-numbers}
+java -cp  .;./build/libs/AndroidLeakFinder.jar;./libs/haha-2.0.3.jar  App -l
 
 ```
 ## 常见问题
